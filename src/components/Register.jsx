@@ -10,12 +10,16 @@ function Register() {
   const navigate = useNavigate()
 
   const handleRegister = async () => {
-    try {
+    try {   
+      if (!username || !password) {
+        alert('Please enter both username and password.');
+        return;
+      }
      const response= await axios.post('http://localhost:3000/register', { username, password });
      console.log(response)
       // Redirect to login page or display success message
       alert("User Registered Successfully")
-      navigate('/login')
+      navigate('/')
     } catch (error) {
       console.error('Registration failed', error);
     }

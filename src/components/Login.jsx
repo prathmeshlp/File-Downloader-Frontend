@@ -12,6 +12,12 @@ function Login() {
 
   const handleLogin = async () => {
     try {
+      
+      if (!username || !password) {
+        alert('Please enter both username and password.');
+        return;
+      }
+
       const response = await axios.post('http://localhost:3000/login', { username, password });
       console.log(response,"response")
       alert(response.data.message)
@@ -29,8 +35,8 @@ function Login() {
 
   return (
     <div className='w-[45%] p-8 border border-black mx-auto mt-[100px] flex flex-col justify-center place-items-center rounded-lg'>
-      <h2 className='font-bold'>Login</h2>
-      <input  className='w-80 border border-black rounded-md p-2 mt-3' type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <h2 className='font-bold'>Login To Your Account</h2>
+      <input  className='w-80 border border-black rounded-md p-2 mt-10' type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
       <input  className='w-80 border border-black rounded-md p-2 mt-4' type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
       <button className='w-40  mt-5 border border-black rounded-md py-1'  onClick={handleLogin}>Login</button><br />
       <div className='flex justify-between text-center items-center w-96 px-6 mt-3'>
